@@ -69,8 +69,11 @@ export class SuspenseSubject<T> extends Subject<T> {
   }
 
   private _reset() {
+    if(this === undefined){
+        return;
+    }
     // seems to be undefined in tests?
-    if (this._warmupSubscription) {
+    if (this._warmupSubscription !== undefined && this._warmupSubscription) {
       this._warmupSubscription.unsubscribe();
     }
     this._hasValue = false;
