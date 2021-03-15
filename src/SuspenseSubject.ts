@@ -84,7 +84,7 @@ export class SuspenseSubject<T> extends Subject<T> {
       clearTimeout(this._timeoutHandler);
     }
     this._innerSubscriber = this._innerObservable.subscribe(subscriber);
-    return this._innerSubscriber.add(this._reset);
+    return this._innerSubscriber;
   }
 
   get ourError() {
