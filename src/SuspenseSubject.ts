@@ -69,6 +69,7 @@ export class SuspenseSubject<T> extends Subject<T> {
   }
 
   private _reset() {
+    try{
     if(this === undefined){
         return;
     }
@@ -80,6 +81,9 @@ export class SuspenseSubject<T> extends Subject<T> {
     this._value = undefined;
     this._error = undefined;
     this._firstEmission = new Promise<void>(resolve => (this._resolveFirstEmission = resolve));
+    } catch (error) {
+      console.log("found the undef error");
+    }
   }
 
   _subscribe(subscriber: Subscriber<T>): Subscription {
