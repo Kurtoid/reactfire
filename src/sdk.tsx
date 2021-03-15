@@ -49,7 +49,7 @@ function proxyComponent(componentName: ComponentName): FirebaseNamespaceComponen
 
     const sdkSubject = preload(componentName, app || contextualApp);
 
-    if (!sdkSubject.hasValue && suspenseEnabled) {
+    if (suspenseEnabled && !sdkSubject.hasValue) {
       throw sdkSubject.firstEmission;
     } else if (!sdkSubject.hasValue && !suspenseEnabled && !firebase[componentName]) {
       throw new Error(
